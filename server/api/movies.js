@@ -1,8 +1,9 @@
 export default defineEventHandler(async (event) => {
+    const config = useRuntimeConfig(event)
     const query = getQuery(event)
     const { s, i } = query
   
-    const apiKey = process.env.OMDB_API_KEY
+    const apiKey = config.apiSecret
     if (!apiKey) {
       throw createError({ statusCode: 500, message: 'API key not set' })
     }
